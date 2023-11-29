@@ -40,9 +40,9 @@ public class ClientRestController {
     }
 
     @DeleteMapping("/{email}")
-    public Map<String,String> deleteContact(@PathVariable String email){
-        contactInfoService.deleteContactByEmail(email);
-        return Map.of("message", "Contact with Email: "+ email + " was deleted successfully");
+    public ResponseEntity<String> deleteContact(@PathVariable String email){
+        ResponseEntity<String> message = contactInfoService.deleteContactByEmail(email);
+        return message;
     }
 
 

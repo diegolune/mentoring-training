@@ -1,6 +1,7 @@
 package com.training.mentoring.demo.services;
 
 import com.training.mentoring.demo.entities.ContactInfoEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,5 +16,5 @@ public interface ContactInfoService {
     void saveContactInfo(ContactInfoEntity contactInfo);
 
     @Transactional
-    void deleteContactByEmail(String email);
+    ResponseEntity<String> deleteContactByEmail(String email);
 }

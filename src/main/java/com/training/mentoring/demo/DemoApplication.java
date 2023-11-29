@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @EnableAutoConfiguration()
-@ComponentScan(basePackages = {"com.training.mentoring.demo.controllers","com.training.mentoring.demo.services","com.training.mentoring.demo.impl"})
+@ComponentScan(basePackages = {"com.training.mentoring.demo"})
 public class DemoApplication {
 
 	public static void main(String[] args) {
