@@ -1,14 +1,11 @@
 package com.training.mentoring.demo.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.Date;
 
 @Entity
-public class ContactInfo {
+public class ContactInfoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,6 +13,7 @@ public class ContactInfo {
     private String firstName;
     private String lastName;
     private String phoneNumber;
+    @Column(unique = true)
     private String email;
     private String postalCode;
     private String street;

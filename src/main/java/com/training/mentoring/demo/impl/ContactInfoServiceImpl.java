@@ -1,6 +1,6 @@
 package com.training.mentoring.demo.impl;
 
-import com.training.mentoring.demo.entities.ContactInfo;
+import com.training.mentoring.demo.entities.ContactInfoEntity;
 import com.training.mentoring.demo.repositories.ContactInfoRepository;
 import com.training.mentoring.demo.services.ContactInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,17 +14,17 @@ public class ContactInfoServiceImpl implements ContactInfoService {
     @Autowired
     ContactInfoRepository contactInfoRepository;
     @Override
-    public ContactInfo getContactById(Long id) {
+    public ContactInfoEntity getContactById(Long id) {
         return contactInfoRepository.getReferenceById(id);
     }
 
     @Override
-    public List<ContactInfo> getAllContacts() {
+    public List<ContactInfoEntity> getAllContacts() {
         return contactInfoRepository.findAll();
     }
 
     @Override
-    public void saveContactInfo(ContactInfo contactInfo) {
+    public void saveContactInfo(ContactInfoEntity contactInfo) {
         contactInfoRepository.save(contactInfo);
     }
 

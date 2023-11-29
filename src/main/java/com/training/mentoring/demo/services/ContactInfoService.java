@@ -1,6 +1,6 @@
 package com.training.mentoring.demo.services;
 
-import com.training.mentoring.demo.entities.ContactInfo;
+import com.training.mentoring.demo.entities.ContactInfoEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -8,8 +8,8 @@ import java.util.List;
 @Service
 public interface ContactInfoService {
 
-    ContactInfo getContactById(Long id);
-    List<ContactInfo> getAllContacts();
+    ContactInfoEntity getContactById(Long id);
+    List<ContactInfoEntity> getAllContacts();
 
-    void saveContactInfo(ContactInfo contactInfo);
+    void saveContactInfo(ContactInfoEntity contactInfo);
 }

@@ -1,16 +1,16 @@
 package com.training.mentoring.demo.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.training.mentoring.demo.dto.ContactInfoDto;
+import com.training.mentoring.demo.entities.ContactInfoEntity;
 import com.training.mentoring.demo.impl.ContactInfoServiceImpl;
-import com.training.mentoring.demo.entities.ContactInfo;
-import org.hibernate.collection.spi.PersistentBag;
+import com.training.mentoring.demo.util.MappingObjectsUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/contact-book")
@@ -20,20 +20,24 @@ public class ClientRestController {
     private ContactInfoServiceImpl contactInfoService;
 
     @GetMapping("/demo")
-    public ResponseEntity<String> nuevoEndpoint(){
+    public ResponseEntity<String> nuevoEndpoint() {
 
-       return ResponseEntity.ok("This is a demo endpoint for testing purposes");
+        return ResponseEntity.ok("This is a demo endpoint for testing purposes");
     }
 
     @GetMapping("/all-contacts")
-    public List<ContactInfo> getAllContacts() throws JsonProcessingException {
-        return contactInfoService.getAllContacts();
+    public List<ContactInfoDto> getAllContacts() throws JsonProcessingException {
+        List<ContactInfoEntity> aListOfEntityContacts = contactInfoService.getAllContacts();
+        List<ContactInfoDto> aListOfDtoContacts = aListOfEntityContacts.stream().map(usuario -> MappingObjectsUtil.mapEntityToDto.apply(usuario)).collect(Collectors.toList());
+        return aListOfDtoContacts;
     }
 
     @PostMapping("/save-contact")
-    public void postContactInfo(@RequestBody ContactInfo contactInfo){
-        contactInfoService.saveContactInfo(contactInfo);
+    public void postContactInfo(@RequestBody ContactInfoDto contactInfo) {
+        ContactInfoEntity  contactInfoRequested = MappingObjectsUtil.mapDtoToEntity.apply(contactInfo);
+        contactInfoService.saveContactInfo(contactInfoRequested);
 
     }
+
 
 }
