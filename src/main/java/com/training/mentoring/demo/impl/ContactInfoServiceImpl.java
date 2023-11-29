@@ -28,5 +28,10 @@ public class ContactInfoServiceImpl implements ContactInfoService {
         contactInfoRepository.save(contactInfo);
     }
 
+    @Override
+    public void deleteContactByEmail(String email) {
+        contactInfoRepository.deleteByEmail(email);
+    }
+
 
 }

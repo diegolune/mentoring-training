@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
@@ -36,7 +37,12 @@ public class ClientRestController {
     public void postContactInfo(@RequestBody ContactInfoDto contactInfo) {
         ContactInfoEntity  contactInfoRequested = MappingObjectsUtil.mapDtoToEntity.apply(contactInfo);
         contactInfoService.saveContactInfo(contactInfoRequested);
+    }
 
+    @DeleteMapping("/{email}")
+    public Map<String,String> deleteContact(@PathVariable String email){
+        contactInfoService.deleteContactByEmail(email);
+        return Map.of("message", "Contact with Email: "+ email + " was deleted successfully");
     }
 
 
